@@ -109,8 +109,8 @@ section.blk h2{font-size:30px;margin-bottom:8px}
 <h2>Why people pick RankKit</h2>
 <div class="grid3">
 <div class="card"><span class="tag">Accurate</span><h3>Exact density, not guesswork</h3><p>See the precise percentage for your target keyword and your most repeated phrases in seconds.</p></div>
-  <div class="card"><span class="tag">Readable</span><h3>Human-style copy</h3><p>Generated lines read like something a person wrote, not a keyword pile.</p></div>
-<div class="card"><span class="tag">Private</span><h3>Runs in your browser</h3><p>Your text never leaves your device. No login needed.</p></div>
+<div class="card"><span class="tag">Clear</span><h3>Noise filtered out</h3><p>Common words like the and and are skipped, so the list shows the terms that actually matter.</p></div>
+  <div class="card"><span class="tag">Private</span><h3>Runs in your browser</h3><p>Your text never leaves your device. No login needed.</p></div>
 </div>
 </section>
 
@@ -129,7 +129,7 @@ section.blk h2{font-size:30px;margin-bottom:8px}
 <h2>Every tool is free. No signup, no limits.</h2>
 <div class="grid3">
 <div class="card plan pro"><span class="tag">$0 forever</span><h3>Everything included</h3><ul><li>All five tools, unlimited use</li><li>No account or credit card</li><li>Your text stays in your browser</li></ul></div>
-<div class="card"><h3>How do we keep it free?</h3><p>With a few ads and honest affiliate links to tools we like. If you ever click one, it costs you nothing extra.</p></div>
+<div class="card"><h3>How do we keep it free?</h3><p>We run a few ads to cover hosting. Your text is never stored or sold.</p></div>
 </div>
 </section>
 
@@ -148,12 +148,7 @@ section.blk h2{font-size:30px;margin-bottom:8px}
 </main>
 <script>
 const $=id=>document.getElementById(id);
-const cv=document.createElement('canvas').getContext('2d');
-const px=(s,f)=>{cv.font=f;return Math.round(cv.measureText(s).width)};
-const cap=s=>s.replace(/\b\w/g,c=>c.toUpperCase());
-function cls(n,lo,hi,max){return n===0?'bad':n>max?'bad':(n>=lo&&n<=hi)?'ok':'warn'}
-function meter(el,n,max,c){el.style.width=Math.min(100,n/max*100)+'%';el.style.background=c==='ok'?'var(--ok)':c==='warn'?'var(--warn)':'var(--bad)'}
-function cut(s,n){if(s.length<=n)return s;let t=s.slice(0,n-1);return t.slice(0,t.lastIndexOf(' '))+'…'}
+
 
 /* keyword density */
 const stop=new Set('a an the and or but of to in on for with at by from is are was were be been it this that as not you your we our they their i he she his her its if so do does can will just than then there what which who how all any more most'.split(' '));
@@ -161,8 +156,8 @@ function dens(){const raw=($('kt').value.toLowerCase().match(/[\p{L}\p{N}']+/gu)
                 const n=+$('kn').value,total=raw.length,m={};
 for(let i=0;i<=raw.length-n;i++){const g=raw.slice(i,i+n);if(n===1&&(stop.has(g[0])||g[0].length<3))continue;if(n>1&&(stop.has(g[0])||stop.has(g[n-1])))continue;const k=g.join(' ');m[k]=(m[k]||0)+1}
 const rows=Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,15);
-const tk=$('kk').value.trim().toLowerCase().split(/\s+/).join(' ');let top='';
-if(tk&&total){const esc=tk.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp('(?<![\\p{L}\\p{N}])'+esc+'(?![\\p{L}\\p{N}])','gu');const c=(raw.join(' ').match(re)||[]).length;const p=c*tk.split(' ').length/total*100;const safe=tk.replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+const tk=($('kk').value.toLowerCase().match(/[\p{L}\p{N}']+/gu)||[]).map(w=>w.replace(/^'+|'+$/g,'')).filter(Boolean).join(' ');let top='';
+                if(tk&&total){const esc=tk.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp('(?<![\\p{L}\\p{N}])'+esc+'(?![\\p{L}\\p{N}])','gu');const c=(raw.join(' ').match(re)||[]).length;const p=c*tk.split(' ').length/total*100;const safe=tk.replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
 top=`<div class="res"><b>${safe}</b> appears ${c} times, density <b class="${p>3?'bad':p>=0.5?'ok':'warn'}">${p.toFixed(2)}%</b> ${p>3?'(too high, may look stuffed)':p<0.5?'(a little low)':'(looks natural)'}</div>`}
 if(!total){$('kr').innerHTML='';return}
 const mx=rows[0]?rows[0][1]:1;
