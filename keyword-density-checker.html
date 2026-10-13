@@ -108,8 +108,8 @@ section.blk h2{font-size:30px;margin-bottom:8px}
 <section class="blk">
 <h2>Why people pick RankKit</h2>
 <div class="grid3">
-<div class="card"><span class="tag">Accurate</span><h3>Pixel-aware limits</h3><p>Most tools count characters only. We also measure pixel width, so your title is not cut off with “…”.</p></div>
-<div class="card"><span class="tag">Readable</span><h3>Human-style copy</h3><p>Generated lines read like something a person wrote, not a keyword pile.</p></div>
+<div class="card"><span class="tag">Accurate</span><h3>Exact density, not guesswork</h3><p>See the precise percentage for your target keyword and your most repeated phrases in seconds.</p></div>
+  <div class="card"><span class="tag">Readable</span><h3>Human-style copy</h3><p>Generated lines read like something a person wrote, not a keyword pile.</p></div>
 <div class="card"><span class="tag">Private</span><h3>Runs in your browser</h3><p>Your text never leaves your device. No login needed.</p></div>
 </div>
 </section>
@@ -157,13 +157,13 @@ function cut(s,n){if(s.length<=n)return s;let t=s.slice(0,n-1);return t.slice(0,
 
 /* keyword density */
 const stop=new Set('a an the and or but of to in on for with at by from is are was were be been it this that as not you your we our they their i he she his her its if so do does can will just than then there what which who how all any more most'.split(' '));
-function dens(){const raw=$('kt').value.toLowerCase().match(/[\p{L}\p{N}']+/gu)||[];
-const n=+$('kn').value,total=raw.length,m={};
+function dens(){const raw=($('kt').value.toLowerCase().match(/[\p{L}\p{N}']+/gu)||[]).map(w=>w.replace(/^'+|'+$/g,'')).filter(Boolean);
+                const n=+$('kn').value,total=raw.length,m={};
 for(let i=0;i<=raw.length-n;i++){const g=raw.slice(i,i+n);if(n===1&&(stop.has(g[0])||g[0].length<3))continue;if(n>1&&(stop.has(g[0])||stop.has(g[n-1])))continue;const k=g.join(' ');m[k]=(m[k]||0)+1}
 const rows=Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,15);
-const tk=$('kk').value.trim().toLowerCase();let top='';
-if(tk&&total){const c=(raw.join(' ').match(new RegExp(tk.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'),'g'))||[]).length;const p=(c*tk.split(/\s+/).length/total*100);
-top=`<div class="res"><b>${tk}</b> appears ${c} times, density <b class="${p>3?'bad':p>=0.5?'ok':'warn'}">${p.toFixed(2)}%</b> ${p>3?'(too high, may look stuffed)':p<0.5?'(a little low)':'(looks natural)'}</div>`}
+const tk=$('kk').value.trim().toLowerCase().split(/\s+/).join(' ');let top='';
+if(tk&&total){const esc=tk.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');const re=new RegExp('(?<![\\p{L}\\p{N}])'+esc+'(?![\\p{L}\\p{N}])','gu');const c=(raw.join(' ').match(re)||[]).length;const p=c*tk.split(' ').length/total*100;const safe=tk.replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
+top=`<div class="res"><b>${safe}</b> appears ${c} times, density <b class="${p>3?'bad':p>=0.5?'ok':'warn'}">${p.toFixed(2)}%</b> ${p>3?'(too high, may look stuffed)':p<0.5?'(a little low)':'(looks natural)'}</div>`}
 if(!total){$('kr').innerHTML='';return}
 const mx=rows[0]?rows[0][1]:1;
 $('kr').innerHTML=top+`<p class="sub" style="margin-top:14px">${total} total words</p><div class="scroll"><table><tr><th>Phrase</th><th>Count</th><th>Density</th><th style="width:30%"></th></tr>`+rows.map(r=>`<tr><td></td><td>${r[1]}</td><td>${(r[1]*n/total*100).toFixed(2)}%</td><td><div class="bar" style="width:${r[1]/mx*100}%"></div></td></tr>`).join('')+'</table></div>';
