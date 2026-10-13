@@ -37,17 +37,10 @@ nav a{color:var(--herotxt);text-decoration:none;margin-left:18px;font-size:15px;
 .hero{padding-top:env(safe-area-inset-top,0px)}.hero svg.bg{position:absolute;right:-60px;top:-40px;width:520px;max-width:80%;opacity:.55;pointer-events:none}
 .hero h1{font-size:clamp(34px,6vw,58px);font-weight:800;letter-spacing:-.03em;max-width:700px;margin-top:36px}
 .hero p{max-width:560px;color:#b9c6dc;font-size:18px;margin:16px 0 0}
-.serp{position:relative;background:var(--card);color:var(--ink);border-radius:18px;padding:22px;margin-top:34px;box-shadow:0 20px 50px rgba(0,0,0,.35);max-width:760px}
-.serp .url{font-size:13px;color:var(--mut);display:flex;gap:8px;align-items:center}
-.serp .fav{width:22px;height:22px;border-radius:50%;background:var(--accsoft);display:grid;place-items:center;font-size:12px}
-.serp .t{font:400 20px/1.3 Arial,sans-serif;color:#1a0dab;margin:4px 0;word-break:break-word}
-:root[data-theme="dark"] .serp .t{color:#8ab4f8}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .serp .t{color:#8ab4f8}}
-.serp .d{font:400 14px/1.58 Arial,sans-serif;color:var(--mut);word-break:break-word}
+
 main{padding:40px 0 20px}
 .tabs{display:flex;gap:8px;overflow-x:auto;padding:4px 0 14px;margin-top:-26px;position:relative}
-.tabs button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px;border-radius:999px;font:500 15px 'DM Sans';cursor:pointer}
-.tabs button[aria-selected=true]{background:var(--acc);color:#fff;border-color:var(--acc)}
+
 button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
 .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;display:none}
 .panel.on{display:block}
@@ -57,26 +50,14 @@ label{display:block;font-weight:500;font-size:14px;margin:12px 0 5px}
 input,textarea,select{width:100%;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:11px 12px;font:16px 'DM Sans'}
 textarea{min-height:110px;resize:vertical}
 .row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.btn{background:var(--acc);color:#fff;border:0;border-radius:10px;padding:11px 18px;font:700 15px 'DM Sans';cursor:pointer;margin-top:16px}
-.btn.alt{background:var(--accsoft);color:var(--acc)}
-.meter{height:8px;background:var(--line);border-radius:9px;overflow:hidden;margin-top:6px}
-.meter i{display:block;height:100%;width:0;background:var(--ok);transition:width .2s,background .2s}
-.cnt{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-top:5px;gap:10px;flex-wrap:wrap}
-.cnt b.ok{color:var(--ok)}.cnt b.warn{color:var(--warn)}.cnt b.bad{color:var(--bad)}
+
 .res{border:1px solid var(--line);border-radius:12px;padding:14px;margin-top:12px;background:var(--bg)}
-.res p{margin:0 0 8px}
-.res .meta{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;flex-wrap:wrap}
-.res button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:8px;padding:5px 12px;cursor:pointer;font:500 13px 'DM Sans'}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:16px}
-.stats div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:14px}
-.stats b{display:block;font:800 30px 'Bricolage Grotesque'}
-.stats span{font-size:13px;color:var(--mut)}
+
+
 table{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}
 th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
 td .bar{height:6px;border-radius:6px;background:var(--acc);min-width:2px}
 .scroll{overflow-x:auto}
-pre{background:#0f1b2d;color:#d6e4ff;border-radius:12px;padding:16px;overflow:auto;font:13px/1.55 ui-monospace,Menlo,monospace;max-height:380px;margin:12px 0 0}
-.ad{margin:26px 0;border:1.5px dashed var(--line);border-radius:12px;min-height:90px;display:grid;place-items:center;color:var(--mut);font-size:13px;text-align:center;padding:10px}
 section.blk{margin-top:44px}
 section.blk h2{font-size:30px;margin-bottom:8px}
 .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:18px}
@@ -86,11 +67,8 @@ section.blk h2{font-size:30px;margin-bottom:8px}
 .card .tag{display:inline-block;background:var(--accsoft);color:var(--acc);border-radius:6px;padding:2px 8px;font-size:12px;font-weight:700;margin-bottom:10px}
 .plan.pro{border:2px solid var(--acc)}
 .plan ul{padding-left:18px;margin:10px 0 0;color:var(--mut);font-size:15px}
-.price{font:800 34px 'Bricolage Grotesque';margin:6px 0}
 .guide article{margin-top:30px;max-width:720px}.guide h3{font-size:24px;margin-bottom:8px}.guide p{color:var(--mut)}.page-sec{max-width:720px}.page-sec p{color:var(--mut)}footer a{margin-right:14px}footer{margin-top:50px;padding:30px 0 calc(30px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);color:var(--mut);font-size:14px}
-.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-top:10px}
-.faq summary{cursor:pointer;font-weight:700}
-.faq p{color:var(--mut);margin:8px 0 0}
+
 .tabs a{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:10px 16px;border-radius:999px;font:500 15px 'DM Sans';text-decoration:none}.tabs a[aria-current=page]{background:var(--acc);color:#fff;border-color:var(--acc)}.card h3 a{color:var(--ink);text-decoration:none}</style>
 </head>
 <body>
@@ -114,16 +92,8 @@ section.blk h2{font-size:30px;margin-bottom:8px}
 </div>
 </section>
 
-<div class="ad">Ad space · Responsive (in-article)</div>
 
-<section class="blk">
-<h2>Tools we use and recommend</h2><p class="sub">Replace the # links with your affiliate links.</p>
-<div class="grid3">
-<div class="card"><span class="tag">Research</span><h3>Semrush</h3><p>Keyword research and competitor gaps in one dashboard.</p><p><a href="#">Try free trial</a></p></div>
-<div class="card"><span class="tag">Backlinks</span><h3>Ahrefs</h3><p>See who links to the pages beating you.</p><p><a href="#">Visit Ahrefs</a></p></div>
-<div class="card"><span class="tag">Hosting</span><h3>Fast hosting</h3><p>Page speed is a ranking factor. Pick a host with good Core Web Vitals.</p><p><a href="#">See deal</a></p></div>
-</div>
-</section>
+
 
 <section class="blk" id="free">
 <h2>Every tool is free. No signup, no limits.</h2>
@@ -137,8 +107,8 @@ section.blk h2{font-size:30px;margin-bottom:8px}
 <section class="blk guide"><h2>How the tool works</h2>
 <article>
 <h3>Keyword density checker: spot repetition and gaps</h3>
-<p>Keyword density is how often a word or phrase appears compared with the total words on the page. If your main phrase appears 10 times in 1,000 words, the density is 1%. Google has said there is no ideal percentage, but the number is still a quick way to spot two problems: a page that never mentions its topic, and a page that repeats it so often that it reads badly.</p>
-<p>Paste your content, choose one, two or three word phrases, and read the table. Common words like the and and are skipped so the list shows meaningful terms. Type a target keyword to get its exact density with a plain verdict. Most natural pages sit somewhere between 0.5% and 2% for their main phrase.</p>
+<div class="card"><h3>How do we keep it free?</h3><p>This is a small side project, and we keep it free for everyone. Your text is never stored or sold.</p></div>
+  <p>Paste your content, choose one, two or three word phrases, and read the table. Common words like the and and are skipped so the list shows meaningful terms. Type a target keyword to get its exact density with a plain verdict. Most natural pages sit somewhere between 0.5% and 2% for their main phrase.</p>
 <p>If your top phrases do not match your topic, the content may be drifting. Add related terms, synonyms and answers to the questions people actually ask instead of repeating the exact phrase. A good test is to read the page aloud. If it sounds forced, trim the repeats. Modern search engines understand meaning, so clear and helpful writing will always do more for you than hitting a target number.</p>
 <details><summary>What is a good keyword density?</summary><p>There is no official number. Around 0.5% to 2% for the main phrase usually reads naturally.</p></details>
 <details><summary>Does keyword stuffing hurt rankings?</summary><p>Yes. Repeating a phrase unnaturally can make a page read poorly and may be treated as spam.</p></details>
